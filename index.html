@@ -176,10 +176,10 @@
 
     <!-- 篩選 Tab -->
     <div class="filter-container">
-        <button class="filter-btn active" id="tab-all" onclick="filterWorks('all')">All Works</button>
-        <button class="filter-btn" id="tab-pub" onclick="filterWorks('publishing')">Publishing</button>
-        <button class="filter-btn" id="tab-fin" onclick="filterWorks('fintech')">FinTech & AI</button>
-        <button class="filter-btn" id="tab-agc" onclick="filterWorks('agency')">Agency & Campaigns</button>
+        <button class="filter-btn active" id="tab-all" onclick="filterWorks('all', this)">All Works</button>
+        <button class="filter-btn" id="tab-pub" onclick="filterWorks('publishing', this)">Publishing</button>
+        <button class="filter-btn" id="tab-fin" onclick="filterWorks('fintech', this)">FinTech & AI</button>
+        <button class="filter-btn" id="tab-agc" onclick="filterWorks('agency', this)">Agency & Campaigns</button>
     </div>
 
     <!-- 首頁作品卡片網格 -->
@@ -187,7 +187,7 @@
         <!-- 卡片 1: 香港職人 -->
         <div class="work-card" data-category="publishing" onclick="openGallery(0)">
             <div>
-                <img src="HKcraftman cover2.jpg" alt="香港職人" class="work-img">
+                <img src="assets/images/hkcraftman-cover2.jpg" alt="《香港職人》書封" class="work-img" loading="lazy">
                 <span class="card-pill" id="card1-pill">Publishing / Cultural Heritage</span>
                 <h3 class="work-title" id="card1-title">《香港職人》出版保育計劃</h3>
                 <div class="work-meta-list">
@@ -201,7 +201,7 @@
         <!-- 卡片 2: KPay -->
         <div class="work-card" data-category="fintech" onclick="openGallery(1)">
             <div>
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="KPay" class="work-img">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="KPay" class="work-img" loading="lazy">
                 <span class="card-pill" id="card2-pill">FinTech / AI Workflow</span>
                 <h3 class="work-title" id="card2-title">KPay • 品牌內容戰略與 AI 工作流</h3>
                 <div class="work-meta-list">
@@ -215,7 +215,7 @@
         <!-- 卡片 3: Allianz -->
         <div class="work-card" data-category="agency" onclick="openGallery(2)">
             <div>
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Allianz" class="work-img">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Allianz" class="work-img" loading="lazy">
                 <span class="card-pill" id="card3-pill">Agency / Integrated</span>
                 <h3 class="work-title" id="card3-title">Allianz — 「Incomepedia」全渠道企劃</h3>
                 <div class="work-meta-list">
@@ -252,12 +252,12 @@
 </div>
 
 <!-- ================= Modal Slider 圖層 ================= -->
-<div class="modal-overlay" id="galleryOverlay">
-    <button class="close-gallery" onclick="closeGallery()">&times;</button>
+<div class="modal-overlay" id="galleryOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="close-gallery" onclick="closeGallery()" aria-label="Close gallery">&times;</button>
     
     <div class="slider-wrapper">
-        <button class="nav-arrow arrow-left" onclick="prevCard()">&lt;</button>
-        <button class="nav-arrow arrow-right" onclick="nextCard()">&gt;</button>
+        <button class="nav-arrow arrow-left" onclick="prevCard()" aria-label="Previous slide">&lt;</button>
+        <button class="nav-arrow arrow-right" onclick="nextCard()" aria-label="Next slide">&gt;</button>
 
         <div class="cards-track" id="cardsTrack">
             
@@ -286,7 +286,7 @@
                         </div>
                     </div>
                     <div class="card-image">
-                        <img src="HKcraftman cover2.jpg" alt="香港職人">
+                        <img src="assets/images/hkcraftman-cover2.jpg" alt="《香港職人》書封" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -308,7 +308,7 @@
                         <a href="#" class="primary-btn" id="m2-btn">查看 KPay 專案 Case Study →</a>
                     </div>
                     <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="KPay">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="KPay" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -330,7 +330,7 @@
                         <a href="#" class="primary-btn" id="m3-btn">查看 Allianz 專案細節 →</a>
                     </div>
                     <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Allianz">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Allianz" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -477,34 +477,48 @@
 
     // ---------------- Slider Modal 控制邏輯 ----------------
     let currentIndex = 0;
-    const cards = document.querySelectorAll('.modal-card');
+    function getCards() { return Array.from(document.querySelectorAll('.modal-card')); }
     const track = document.getElementById('cardsTrack');
 
     function updateSlider() {
-        const cardWidth = cards[0].offsetWidth + 30;
+        const cards = getCards();
+        if (!cards.length || !track) return;
+        const gap = 30; // must match CSS
+        const cardWidth = cards[0].getBoundingClientRect().width + gap;
         const offset = -currentIndex * cardWidth;
         track.style.transform = `translateX(${offset}px)`;
 
         cards.forEach((card, index) => {
-            if (index === currentIndex) {
-                card.classList.add('active-card');
-            } else {
-                card.classList.remove('active-card');
-            }
+            card.classList.toggle('active-card', index === currentIndex);
         });
+
+        // focus first interactive element for screen reader users
+        const active = cards[currentIndex];
+        if (active) {
+            const focusable = active.querySelector('.primary-btn, a, button');
+            if (focusable) focusable.focus();
+        }
     }
 
     function openGallery(index) {
         currentIndex = index;
-        document.getElementById('galleryOverlay').classList.add('active');
+        const overlay = document.getElementById('galleryOverlay');
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
         updateSlider();
     }
 
     function closeGallery() {
-        document.getElementById('galleryOverlay').classList.remove('active');
+        const overlay = document.getElementById('galleryOverlay');
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        // return focus to the calling card
+        const card = document.querySelectorAll('.work-card')[currentIndex];
+        if (card) card.focus();
     }
 
     function nextCard() {
+        const cards = getCards();
         if (currentIndex < cards.length - 1) {
             currentIndex++;
             updateSlider();
@@ -518,10 +532,10 @@
         }
     }
 
-    function filterWorks(category) {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+    function filterWorks(category, btn) {
+        // toggle active class
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
 
         const workCards = document.querySelectorAll('.work-card');
         workCards.forEach(card => {
@@ -532,6 +546,16 @@
             }
         });
     }
+
+    // keyboard accessibility for modal
+    document.addEventListener('keydown', (e) => {
+        const overlay = document.getElementById('galleryOverlay');
+        if (!overlay || !overlay.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') nextCard();
+        else if (e.key === 'ArrowLeft') prevCard();
+        else if (e.key === 'Escape') closeGallery();
+    });
+
 </script>
 
 </body>
