@@ -7,21 +7,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b1020; /* deep navy */
-      --card:#0f1a2b;
-      --muted:#9fb0d6;
-      --accent:#00F5D4; /* teal */
-      --glass: rgba(255,255,255,0.03);
+      /* New color palette requested */
+      --primary-bg: #F5F6F4;       /* 極淺灰綠底色 */
+      --card-bg: #E3E7E0;          /* 柔和鼠尾草綠卡片 */
+      --card-white: #FFFFFF;       /* 純白卡片 */
+      --accent-olive: #5B6356;     /* 主色：深橄欖綠 */
+      --text-primary: #1C1B1B;     /* 深炭灰色 */
+      --text-muted: #474545;       /* 次要內文灰色 */
+      --tag-bg: #D4DAD0;           /* Tag 標籤背景 */
+
+      /* compatibility variables used throughout the CSS */
+      --bg: var(--primary-bg);
+      --card: var(--card-bg);
+      --muted: var(--text-muted);
+      --accent: var(--accent-olive);
+      --glass: rgba(28,27,27,0.03);
       --radius:14px;
       --maxw:1100px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #071026 100%);
-      color:#e6eefc;
+      background: var(--bg);
+      color:var(--text-primary);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       padding:36px 20px;
@@ -32,37 +43,37 @@
     /* Header */
     header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
     .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6ef0d7);display:flex;align-items:center;justify-content:center;color:#032; font-weight:700}
-    .brand h1{font-size:1.05rem;margin:0}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#8b9a83);display:flex;align-items:center;justify-content:center;color:var(--card-white); font-weight:700}
+    .brand h1{font-size:1.05rem;margin:0;color:var(--text-primary)}
     nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    nav a.cta{background:var(--accent);color:#042;padding:8px 14px;border-radius:10px}
+    nav a.cta{background:var(--accent);color:var(--card-white);padding:8px 14px;border-radius:10px}
 
     /* Hero */
     .hero{display:grid;grid-template-columns:1fr 460px;gap:32px;align-items:center;margin-bottom:36px}
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:40px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .hero-card{background:var(--card-white);padding:40px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(12,12,12,0.06);border:1px solid rgba(28,27,27,0.06)}
     .eyebrow{color:var(--accent);font-weight:700;letter-spacing:1px;font-size:0.85rem;margin-bottom:14px}
-    .hero h2{font-size:2.4rem;margin:0 0 16px 0;line-height:1.03;color:#fff}
+    .hero h2{font-size:2.4rem;margin:0 0 16px 0;line-height:1.03;color:var(--text-primary)}
     .hero p.lead{color:var(--muted);font-size:1.03rem;margin-bottom:22px}
     .buttons{display:flex;gap:14px}
     .btn{padding:12px 18px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#5af0c9);color:#052}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn.primary{background:var(--accent);color:var(--card-white)}
+    .btn.ghost{background:transparent;border:1px solid rgba(28,27,27,0.06);color:var(--muted)}
 
     /* Hero image / card stack */
     .visual{position:relative}
-    .visual .main-img{width:100%;height:360px;border-radius:12px;object-fit:cover;display:block;border:1px solid rgba(255,255,255,0.04)}
+    .visual .main-img{width:100%;height:360px;border-radius:12px;object-fit:cover;display:block;border:1px solid rgba(28,27,27,0.04)}
     .card-stack{position:absolute;left:16px;bottom:-22px;width:calc(100% - 32px);display:flex;gap:12px}
-    .mini{background:var(--card);padding:12px;border-radius:12px;flex:1;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 24px rgba(2,8,20,0.5)}
-    .mini h4{margin:0 0 6px 0;font-size:0.95rem}
+    .mini{background:var(--card);padding:12px;border-radius:12px;flex:1;border:1px solid rgba(28,27,27,0.06);box-shadow:0 8px 24px rgba(12,12,12,0.06)}
+    .mini h4{margin:0 0 6px 0;font-size:0.95rem;color:var(--text-primary)}
     .mini p{margin:0;color:var(--muted);font-size:0.85rem}
 
     /* Portfolio grid */
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .28s ease,box-shadow .28s ease}
-    .card:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(2,8,20,0.6)}
+    .card{background:var(--card-white);padding:18px;border-radius:12px;border:1px solid rgba(28,27,27,0.04);transition:transform .28s ease,box-shadow .28s ease}
+    .card:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(12,12,12,0.08)}
     .card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px}
-    .tag{color:var(--accent);font-weight:700;font-size:0.78rem;margin-bottom:8px}
-    .card h3{margin:0 0 8px 0}
+    .tag{background:var(--tag-bg);color:var(--text-primary);font-weight:700;font-size:0.78rem;margin-bottom:8px;padding:6px 8px;border-radius:8px;display:inline-block}
+    .card h3{margin:0 0 8px 0;color:var(--text-primary)}
     .card p{color:var(--muted);font-size:0.92rem}
 
     /* Footer */
@@ -73,7 +84,8 @@
     @media (max-width:720px){body{padding:18px}.hero{grid-template-columns:1fr;gap:20px}.visual{order:-1}.card-stack{position:relative;bottom:0;left:0;width:100%;flex-direction:row}.grid{grid-template-columns:1fr}}
 
     /* small helpers */
-    a.social{color:var(--muted);text-decoration:none;margin-left:10px}
+    a.social{color:var(--muted);text-decoration:none;margin-left:10px;display:inline-flex;align-items:center}
+    .linkedin-icon{width:18px;height:18px;display:inline-block}
   </style>
 </head>
 <body>
@@ -104,10 +116,20 @@
             <button class="btn primary" onclick="location.href='#works'">查看作品集</button>
             <button class="btn ghost" onclick="location.href='mailto:lowenayue1125@gmail.com'">聯繫我</button>
           </div>
-          <div style="display:flex;align-items:center">
-            <a class="social" href="https://www.linkedin.com/in/ly-yue-25799a188" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">🔗</a>
-            <a class="social" href="mailto:lowenayue1125@gmail.com">📧</a>
-            <a class="social" href="tel:+85259940019">📞</a>
+          <div style="display:flex;align-items:center;gap:10px">
+            <!-- Official LinkedIn logo (SVG) -->
+            <a class="social" href="https://www.linkedin.com/in/ly-yue-25799a188" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">
+              <svg class="linkedin-icon" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="false">
+                <title>LinkedIn</title>
+                <g>
+                  <rect width="34" height="34" rx="4" fill="#0A66C2"/>
+                  <path d="M11.6 14.1h3.6v9.6h-3.6v-9.6zM13.4 11.5c1.2 0 2-0.8 2-1.9-0.0-1.1-0.8-1.9-2-1.9-1.2 0-2 0.8-2 1.9 0 1.1 0.8 1.9 2 1.9zM18.7 14.1c1.9 0 3.1 0.9 3.7 2.5v-2.1h3.6v9.6h-3.6v-5c0-1.4-0.5-2.5-1.8-2.5-1 0-1.6 0.7-1.9 1.4-0.1 0.2-0.1 0.6-0.1 0.9v5.2h-3.6c0 0 0.0-8.8 0-9.6h3.6z" fill="#FFFFFF"/>
+                </g>
+              </svg>
+            </a>
+
+            <a class="social" href="mailto:lowenayue1125@gmail.com" title="Email">📧</a>
+            <a class="social" href="tel:+85259940019" title="Phone">📞</a>
           </div>
         </div>
 
