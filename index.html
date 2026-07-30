@@ -1,175 +1,497 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Lowena Yue — Content Strategist & Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b1020; /* deep navy */
-      --card:#0f1a2b;
-      --muted:#9fb0d6;
-      --accent:#00F5D4; /* teal */
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
-      --maxw:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #071026 100%);
-      color:#e6eefc;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:36px 20px;
-      display:flex;justify-content:center;
-    }
-    .wrap{width:100%;max-width:var(--maxw)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lowena Yue | Content Strategist & Marketing Portfolio</title>
+    <!-- 引入質感無襯線字體 Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 🎨 高爾夫會所米黃 + 鼠尾草綠 調色盤 */
+        :root {
+            --bg-warm-beige: #F7F5EE;     /* 高爾夫會所溫潤米黃底色 */
+            --card-white: #FFFFFF;        /* 潔純白卡片 */
+            --sage-green: #8B9485;        /* 鼠尾草綠 (點綴/按鈕) */
+            --sage-light: #E8EBE4;        /* 淺鼠尾草綠 (Tag背景) */
+            --sage-dark: #3A4036;         /* 深鼠尾草綠 (文字加強) */
+            --text-primary: #1C1B1B;      /* 深碳黑標題 */
+            --text-secondary: #525252;    /* 柔和內文灰 */
+            --border-subtle: #E6E4DC;     /* 輕微米灰邊框 */
+            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
 
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6ef0d7);display:flex;align-items:center;justify-content:center;color:#032; font-weight:700}
-    .brand h1{font-size:1.05rem;margin:0}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    nav a.cta{background:var(--accent);color:#042;padding:8px 14px;border-radius:10px}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 460px;gap:32px;align-items:center;margin-bottom:36px}
-    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:40px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,8,20,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .eyebrow{color:var(--accent);font-weight:700;letter-spacing:1px;font-size:0.85rem;margin-bottom:14px}
-    .hero h2{font-size:2.4rem;margin:0 0 16px 0;line-height:1.03;color:#fff}
-    .hero p.lead{color:var(--muted);font-size:1.03rem;margin-bottom:22px}
-    .buttons{display:flex;gap:14px}
-    .btn{padding:12px 18px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),#5af0c9);color:#052}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+        body {
+            background-color: var(--bg-warm-beige);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
 
-    /* Hero image / card stack */
-    .visual{position:relative}
-    .visual .main-img{width:100%;height:360px;border-radius:12px;object-fit:cover;display:block;border:1px solid rgba(255,255,255,0.04)}
-    .card-stack{position:absolute;left:16px;bottom:-22px;width:calc(100% - 32px);display:flex;gap:12px}
-    .mini{background:var(--card);padding:12px;border-radius:12px;flex:1;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 24px rgba(2,8,20,0.5)}
-    .mini h4{margin:0 0 6px 0;font-size:0.95rem}
-    .mini p{margin:0;color:var(--muted);font-size:0.85rem}
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-    /* Portfolio grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:64px}
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);transition:transform .28s ease,box-shadow .28s ease}
-    .card:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(2,8,20,0.6)}
-    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px}
-    .tag{color:var(--accent);font-weight:700;font-size:0.78rem;margin-bottom:8px}
-    .card h3{margin:0 0 8px 0}
-    .card p{color:var(--muted);font-size:0.92rem}
+        /* 頂部 Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
 
-    /* Footer */
-    footer{margin-top:44px;color:var(--muted);text-align:center;padding:28px 0}
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    /* Responsive */
-    @media (max-width:1000px){.hero{grid-template-columns:1fr 360px}.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:720px){body{padding:18px}.hero{grid-template-columns:1fr;gap:20px}.visual{order:-1}.card-stack{position:relative;bottom:0;left:0;width:100%;flex-direction:row}.grid{grid-temp[...]} }
+        .avatar-badge {
+            width: 40px;
+            height: 40px;
+            background-color: var(--sage-green);
+            color: var(--card-white);
+            font-weight: 700;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
 
-    /* small helpers */
-    a.social{color:var(--muted);text-decoration:none;margin-left:10px}
-  </style>
+        .profile-avatar{width:40px;height:40px;border-radius:8px;object-fit:cover;display:inline-block}
+
+        .logo-text h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--sage-green);
+        }
+
+        .btn-connect {
+            background-color: var(--text-primary);
+            color: var(--card-white) !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-connect:hover {
+            background-color: var(--sage-dark) !important;
+        }
+
+        /* 英雄區塊 (Hero Grid) */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .hero-card-left {
+            background-color: var(--card-white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--sage-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            background-color: var(--sage-green);
+            color: var(--card-white);
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--sage-dark);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .pill-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background-color: var(--sage-light);
+            color: var(--sage-dark);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hero-card-right {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            min-height: 380px;
+        }
+
+        .hero-card-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 代表作品 (Selected Works) */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .view-all {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .work-card {
+            background-color: var(--card-white);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .work-img {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+
+        .work-content {
+            padding: 0 8px 8px 8px;
+        }
+
+        .card-pill {
+            display: inline-block;
+            background-color: var(--sage-light);
+            color: var(--sage-dark);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .work-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .work-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Me 區塊 */
+        .about-section {
+            background-color: var(--card-white);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .about-bio h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .about-bio p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .about-highlights {
+            background-color: var(--bg-warm-beige);
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .about-highlights h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--sage-dark);
+        }
+
+        .about-highlights ul {
+            list-style: none;
+        }
+
+        .about-highlights li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .about-highlights li::before {
+            content: "•";
+            color: var(--sage-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .hero-grid, .about-grid { grid-template-columns: 1fr; }
+            .hero-card-right { min-height: 250px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">LY</div>
-        <div>
-          <h1>Lowena Yue</h1>
-          <div style="font-size:12px;color:var(--muted)">Content Strategist • Marketing • AI Workflows</div>
+
+<div class="container">
+    <!-- 頂部導覽列 -->
+    <nav>
+        <div class="logo-group">
+            <img src="assets/profile.png" alt="Lowena Yue" class="profile-avatar">
+            <div class="logo-text">
+                <h1>Lowena Yue</h1>
+                <p>Content Strategist • Marketing • AI Workflows</p>
+            </div>
         </div>
-      </div>
-      <nav>
-        <a href="#works">Works</a>
-        <a href="#about">About</a>
-        <a class="cta" href="https://www.linkedin.com/in/ly-yue-25799a188" target="_blank" rel="noopener noreferrer">Connect</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="hero-card">
-        <div class="eyebrow">Portfolio & Services</div>
-        <h2>Brand content strategy that drives measurable growth</h2>
-        <p class="lead">我專注於 B2B / B2C 內容策略、整合行銷與 AI 工具導入，幫助 FinTech 與消費品牌用更少的資源，創造更好的產品敘事與轉換。</p>
-
-        <div style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-          <div class="buttons">
-            <button class="btn primary" onclick="location.href='#works'">查看作品集</button>
-            <button class="btn ghost" onclick="location.href='mailto:lowenayue1125@gmail.com'">聯繫我</button>
-          </div>
-          <div style="display:flex;align-items:center">
-            <a class="social" href="https://www.linkedin.com/in/ly-yue-25799a188" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">🔗</a>
-            <a class="social" href="mailto:lowenayue1125@gmail.com">📧</a>
-            <a class="social" href="tel:+85259940019">📞</a>
-          </div>
+        <div class="nav-links">
+            <a href="#works">Works</a>
+            <a href="#about">About</a>
+            <a href="https://www.linkedin.com/in/ly-yue-25799a188" class="btn-connect" target="_blank" rel="noopener noreferrer">Connect</a>
         </div>
+    </nav>
 
-        <div style="margin-top:22px;display:flex;gap:12px;align-items:center;color:var(--muted);font-size:0.9rem">
-          <div style="background:var(--glass);padding:10px;border-radius:10px">FinTech</div>
-          <div style="background:var(--glass);padding:10px;border-radius:10px">Content Strategy</div>
-          <div style="background:var(--glass);padding:10px;border-radius:10px">AI & Workflow</div>
+    <!-- 英雄區塊 -->
+    <div class="hero-grid">
+        <div class="hero-card-left">
+            <div>
+                <div class="section-tag">Portfolio & Services</div>
+                <h2 class="hero-title">Brand content strategy that drives measurable growth</h2>
+                <p class="hero-desc">
+                    專注於 B2B / B2C 內容策略、整合行銷與 AI 工具導入，幫助 FinTech 與消費品牌用更少的資源，創造更好的產品敘事與轉換。
+                </p>
+            </div>
+            <div>
+                <div class="cta-group">
+                    <a href="#works" class="btn-primary">查看作品集</a>
+                    <a href="mailto:lowenayue1125@gmail.com" class="btn-secondary">聯繫我</a>
+                </div>
+                <div class="pill-tags">
+                    <span class="pill">FinTech</span>
+                    <span class="pill">Content Strategy</span>
+                    <span class="pill">AI & Workflow</span>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="visual">
-        <img class="main-img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" alt="hero">
-        <div class="card-stack" aria-hidden>
-          <div class="mini">
-            <h4>KPay • 品牌專案</h4>
-            <p>內容策略與 AI 工具流程化</p>
-          </div>
-          <div class="mini">
-            <h4>DDB • Allianz</h4>
-            <p>品牌提案與全渠道文案</p>
-          </div>
-          <div class="mini">
-            <h4>HKET • 活動策劃</h4>
-            <p>大型指標活動與媒體合作</p>
-          </div>
+        <div class="hero-card-right">
+            <!-- 替換為你的團隊或企劃側照圖 -->
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Team Collaboration">
         </div>
-      </div>
-    </section>
+    </div>
 
+    <!-- 代表作品區域 -->
     <section id="works">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-        <h2 style="font-size:1.4rem;margin:0">Selected Works</h2>
-        <a href="#" style="color:var(--muted);text-decoration:none">View all →</a>
-      </div>
+        <div class="section-header">
+            <h2>Selected Works</h2>
+            <a href="#" class="view-all">View all →</a>
+        </div>
 
-      <div class="grid">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="KPay">
-          <div class="tag">FinTech / AI</div>
-          <h3>品牌內容戰略與 AI 工作流</h3>
-          <p>整合文案、商戶專訪與自動化內容產出流程。</p>
-        </article>
+        <div class="works-grid">
+            <!-- 卡片 1 -->
+            <div class="work-card">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="KPay" class="work-img">
+                <div class="work-content">
+                    <span class="card-pill">FinTech / AI</span>
+                    <h3 class="work-title">品牌內容戰略與 AI 工作流</h3>
+                    <p class="work-desc">整合文案、商戶專訪與自動化內容產出流程，打造「Business MasterKlass」系列企劃。</p>
+                </div>
+            </div>
 
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" alt="DDB">
-          <div class="tag">Agency / Integrated</div>
-          <h3>Allianz 「Incomepedia」</h3>
-          <p>從 Idea Deck 到執行，負責全渠道內容與數位物料。</p>
-        </article>
+            <!-- 卡片 2 -->
+            <div class="work-card">
+                <img src="https://images.unsplash.com/photo-1542744094-3a31216955a3?auto=format&fit=crop&w=600&q=80" alt="Allianz" class="work-img">
+                <div class="work-content">
+                    <span class="card-pill">Agency / Integrated</span>
+                    <h3 class="work-title">Allianz 「Incomepedia」</h3>
+                    <p class="work-desc">從 Idea Deck 到執行，負責全渠道內容與數位物料，深化安聯保險品牌聲量。</p>
+                </div>
+            </div>
 
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80" alt="HKET">
-          <div class="tag">Media / Events</div>
-          <h3>Ufood Award & Mall Awards</h3>
-          <p>大型活動內容企劃、評選流程與媒體整合。</p>
-        </article>
-      </div>
+            <!-- 卡片 3 -->
+            <div class="work-card">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="HKET" class="work-img">
+                <div class="work-content">
+                    <span class="card-pill">Media / Events</span>
+                    <h3 class="work-title">Ufood Award & Mall Awards</h3>
+                    <p class="work-desc">大型活動內容企劃、評選流程與媒體整合，驅動高流量跨平台互動。</p>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- About Me 區塊 -->
+    <section id="about" class="about-section">
+        <div class="about-grid">
+            <div class="about-bio">
+                <div class="section-tag">About Me</div>
+                <h3>Bridging Creative Storytelling with Commercial Impact</h3>
+                <p>
+                    I am a Content Strategist with 5 years of experience across global 4A agencies, tier-1 media, and FinTech innovators. I specialize in turning complex products into engaging, high-converting brand stories.
+                </p>
+                <p>
+                    Beyond creative copywriting and end-to-end campaign leadership, I pioneer AI-driven workflows (Gemini, Claude) to optimize content production without sacrificing brand quality.
+                </p>
+            </div>
+            <div class="about-highlights">
+                <h4>Core Strengths</h4>
+                <ul>
+                    <li><strong>Glocal Execution:</strong> Adapting global brand standards to regional tone of voice.</li>
+                    <li><strong>End-to-End Leadership:</strong> Ideation, shoot direction, and media partnerships.</li>
+                    <li><strong>AI Productivity:</strong> Scaling content output and workflow efficiency by 30%+.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
     <footer>
-      &copy; 2026 Lowena Yue • Built with Passion & AI • <a href="https://llyyyue.github.io/llyyyue/" style="color:var(--muted)">GitHub Pages</a>
+        <p>&copy; 2026 Lowena Yue. Designed with Purpose & Warmth.</p>
     </footer>
-  </div>
+</div>
+
 </body>
 </html>
