@@ -35,7 +35,6 @@
     /* Header */
     header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
     .brand{display:flex;align-items:center;gap:12px}
-    .profile-avatar{width:48px;height:48px;border-radius:10px;object-fit:cover}
     .brand h1{font-size:1.05rem;margin:0;font-weight:800}
     .brand p{margin:0;font-size:0.85rem;color:var(--muted)}
 
@@ -92,14 +91,13 @@
 
     /* Responsive */
     @media (max-width:1000px){.hero{grid-template-columns:1fr;}.hero-right{order:-1}.works-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
-    @media (max-width:640px){.works-grid{grid-template-columns:1fr}.profile-avatar{width:40px;height:40px}}
+    @media (max-width:640px){.works-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">
-        <img src="assets/profile.png" alt="Lowena Yue" class="profile-avatar">
         <div>
           <h1>Lowena Yue</h1>
           <p>Content Strategist • Marketing • AI Workflows</p>
