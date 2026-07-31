@@ -1,0 +1,4 @@
+Redeploy trigger — created to force GitHub Pages rebuild
+Timestamp: 2026-07-31T
+
+If you want this removed later, delete pages-trigger.txt
