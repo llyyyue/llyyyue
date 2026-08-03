@@ -1,0 +1,4 @@
+Rebuild retriggered by GitHub Copilot.
+Timestamp: 2026-08-03T04:23:00Z
+
+This commit exists only to trigger a GitHub Pages rebuild. Feel free to delete this file after the site is updated.
